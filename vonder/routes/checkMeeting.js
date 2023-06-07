@@ -3,7 +3,7 @@ const router = express.Router();
 const conference = require('../models/Meeting');
 const StatusRoom = require('../models/StatusRoom');
 
-// Route to check available rooms
+
 router.get('/', async (req, res) => {
   try {
     const { startDateTime, endDateTime } = req.query;
@@ -21,7 +21,6 @@ router.get('/', async (req, res) => {
     // Get IDs of the reserved meeting rooms
     const reservedRoomIds = overlappingReservations.map(reservation => reservation.conference);
 
-    // Find all meeting rooms that are not in the reservedRoomIds array
     const availableRooms = await conference.find({ _id: { $nin: reservedRoomIds } });
 
     res.json(availableRooms);
