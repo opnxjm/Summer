@@ -9,6 +9,7 @@ const getAllMeetingRouter = require('./routes/getAllMeeting');
 const verifyToken = require('./middleware/verifyToken');
 const getOneMeetingRouter = require('./routes/getOneMeeting');
 const checkAvailableRouter = require('./routes/checkMeeting');
+const reserveMeetingRouter = require('./routes/reserveMeeting');
 
 app.use(express.json());
 app.use(cookieParser());
@@ -31,6 +32,7 @@ app.use('/createMeeting', verifyToken, createMeetingRouter);
 app.use('/getAllMeeting', verifyToken, getAllMeetingRouter);
 app.use('/getOneMeeting', verifyToken, getOneMeetingRouter);
 app.use('/checkAvailable', verifyToken, checkAvailableRouter);
+app.use('/reserveMeeting', verifyToken, reserveMeetingRouter);
 
 
 app.listen(5555, () => {

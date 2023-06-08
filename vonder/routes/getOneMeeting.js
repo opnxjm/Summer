@@ -7,7 +7,7 @@ router.get('/:name', async (req, res) => {
         const name = req.params.name;
         const room = await conference.find({ roomName: name });
         if (!room) {
-            return res.status(404).json({ 
+            res.status(404).json({ 
                 error: 'Meeting not found' 
             });
         }

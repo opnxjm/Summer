@@ -16,11 +16,13 @@ router.get('/', async (req, res) => {
         // Reservation starts during the provided start and end times
         { startDateTime: { $gte: startDateTime, $lte: endDateTime } },
       ],
-    }).select('conference');
+    }).select('room');
 
     // Get IDs of the reserved meeting rooms
-    const reservedRoomIds = overlappingReservations.map(reservation => reservation.conference);
+    const reservedRoomIds = overlappingReservations.map(reservation => reservation.room);
+    console.log(reservedRoomIds);
 
+    // Find all meeting rooms that are not in the reservedRoomIds array
     const availableRooms = await conference.find({ _id: { $nin: reservedRoomIds } });
 
     res.json(availableRooms);
