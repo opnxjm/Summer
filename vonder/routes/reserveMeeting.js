@@ -55,14 +55,14 @@ router.post('/', async (req, res) => {
                 message: 'User not found'
             });
         }
-        console.log('hi');
+
         const reservation = new StatusRoom({
             room: room._id,
             user: findUser._id,
             startDateTime: startDateTime,
             endDateTime: endDateTime
         });
-        console.log('hello');
+
         await reservation.save();
 
         //Update available field
