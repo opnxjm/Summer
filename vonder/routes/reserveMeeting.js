@@ -11,7 +11,6 @@ router.post('/', async (req, res) => {
     const endDateTime = req.body.endDateTime;
     try {
         const room = await conference.findOne({ roomName: roomName });
-        console.log(room);
         // Check if room exists
         if (!room) {
             res.status(404).json({
@@ -44,12 +43,10 @@ router.post('/', async (req, res) => {
                 message: 'The room is already reserved for the given time range'
             });
         }
-        console.log(existingReservation);
 
         // Can reserve room
         // Find user
         const findUser = await monmodel.findOne({ name: name });
-        console.log(findUser);
         if (!findUser) {
             res.status(404).json({
                 message: 'User not found'
